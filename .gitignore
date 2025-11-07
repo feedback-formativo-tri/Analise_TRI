@@ -1,0 +1,7 @@
+/env
+/report/env
+/pre-processamento/Livros/microdados_enem_2021
+.Rhistory
+.RData
+.Rproj.user
+/.ipynb_checkpoints
