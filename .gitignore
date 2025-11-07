@@ -5,3 +5,5 @@
 .RData
 .Rproj.user
 /.ipynb_checkpoints
+/.tmp.driveupload
+/anaconda_projects
