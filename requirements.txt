@@ -1,0 +1,7 @@
+pandas
+chardet
+numpy
+matplotlib
+reportlab
+plotly
+ollama

@@ -8,7 +8,8 @@
 - numpy  
 - matplotlib  
 - reportlab  
-- plotly  
+- plotly 
+- Ollama 
 
 ### 📊 R
 - dplyr  
