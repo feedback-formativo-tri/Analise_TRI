@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def gera_prompt(area, estado, item):
+def gera_prompt(area, estado, item, bar_file, pie_file, cci_file):
     area_conhecimento = area
     estado = estado
     item = item
@@ -109,7 +109,10 @@ def gera_prompt(area, estado, item):
         "c": round(marcacoes_porcentagem['C'], 2),
         "d": round(marcacoes_porcentagem['D'], 2),
         "e": round(marcacoes_porcentagem['E'], 2),
-        "nulas": round(respostas_nulas_porcentagem, 2)
+        "nulas": round(respostas_nulas_porcentagem, 2),
+        "bar_file": bar_file,
+        "pie_file": pie_file,
+        "cci_file": cci_file
     }
 
     with open(INPUT_FILE, "r", encoding="utf-8") as f:

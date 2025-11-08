@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de Análise Item</title>
+  <style>
+  h1 { text-align: center; }
+  </style>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <h1><b>Relatório de Análise Item</b></h1>
+  <h2><b>Dados do Item</b></h2>
+  <ul>
+   <li>Item: 5</li>
+   <li>Area de Conhecimento: CH</li>
+   <li>Item: 5</li>
+   <li>Dificuldade Estimada do Item: 435.76 (200 - 1.000). É considerada uma questão Muito facil</li>
+   <li>Probabilidade de chute: 0.0%</li>
+   <il>Discriminação do Item: 0.99</li>
+   <il>Gabarito: B</il>
+  </ul>
+
+  <h2>Distribuição das respostas</h2>
+  <iframe src="../plots/dist_5_CH_PA.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+
+  <h2>Acertos por Nível de Habilidade</h2>
+  <iframe src="../plots/acertos_5_CH_PA.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+
+  <h2>Curva Característica do Item</h2>
+  <iframe src="../plots/cci_prof_5_CH_PA.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
+
+  <h2>Interpretações dos Resultados</h2>
+  <ul>
+    <li>Este item apresenta uma alta discriminação (0.99), indicando que consegue distinguir eficazmente entre alunos com habilidades acima e abaixo da dificuldade do item.</li>
+    <li>A grande maioria dos alunos (97.94%) está acima da dificuldade do item, o que resulta em um número significativo de acertos (522028.57) e erros (117376.85). Apenas 2.06% dos alunos estão abaixo da dificuldade.</li>
+    <li>A distribuição das respostas mostra que a opção B foi a mais marcada, com 79.61%, seguida pelas opções C (6.63%), D (4.34%), E (3.99%) e A (4.92%). A probabilidade de chute foi de 0.0%, indicando que quase ninguém deixou a questão sem resposta.</li>
+    <li>A classificação do item como "Muito fácil" (dificuldade <= 472.0) é coerente com os resultados, pois a maioria dos alunos conseguiu acertar a questão.</li>
+  </ul>
+
+  <h2>Recomendações</h2>
+  <p>O item deveria ser mantido, uma vez que apresenta alta discriminação e está classificado corretamente como "Muito fácil". No entanto, é importante monitorar se o baixo percentual de alunos com habilidade abaixo da dificuldade (2.06%) pode indicar que a questão possa ser considerada excessivamente fácil para a maioria dos alunos.</p>
+</body>
+</html>

@@ -10,8 +10,8 @@ from ollama import ChatResponse
 
 
 prompt_file = "prompt_prof.txt"
-report_output_file_html = "report_examples/report_professor_v9.html"
-report_raw_output = "report_examples/report_raw_professor_9.txt"
+report_output_file_html = "report_examples/report_prof_3.html"
+report_raw_output = "report_examples/report_raw_prof_3.txt"
 
 def create_bar_chart(distribuicao_marcacoes):
   # Dados fornecidos
@@ -37,7 +37,7 @@ def create_bar_chart(distribuicao_marcacoes):
 
   chart_html = fig.to_html(include_plotlyjs="cdn", full_html=False)
 
-  with open("dist_respostas.html", "w", encoding="utf-8") as f:
+  with open(f"plots/dist_{ITEM}_{AREA_CONHECIMENTO}_{ESTADO}.html", "w", encoding="utf-8") as f:
       f.write(chart_html)
 
 
@@ -109,7 +109,7 @@ def grafico_acertos_alunos(estatistica_acertos):
 
     # Salvar HTML
     chart_html = fig.to_html(include_plotlyjs="cdn", full_html=False)
-    with open("acertos_por_habilidade.html", "w", encoding="utf-8") as f:
+    with open(f"plots/acertos_{ITEM}_{AREA_CONHECIMENTO}_{ESTADO}.html", "w", encoding="utf-8") as f:
         f.write(chart_html)
 
 
@@ -136,11 +136,14 @@ def gera_relatorio_deepseek():
         f.write(report_html)
 
 
-ITEM = 29
-AREA_CONHECIMENTO = "MT"
+ITEM = 6
+AREA_CONHECIMENTO = "CN"
 ESTADO = "PR"
+BAR_CHART_FILE = f"plots/dist_{ITEM}_{AREA_CONHECIMENTO}_{ESTADO}.html"
+PIE_PLOT_FILE = f"plots/acertos_{ITEM}_{AREA_CONHECIMENTO}_{ESTADO}.html"
+CCI_FILE = f"plots/cci_prof_{ITEM}_{AREA_CONHECIMENTO}_{ESTADO}.html"
 
-item_data = gera_prompt(AREA_CONHECIMENTO, ESTADO, ITEM)
+item_data = gera_prompt(AREA_CONHECIMENTO, ESTADO, ITEM, BAR_CHART_FILE, PIE_PLOT_FILE, CCI_FILE)
 print("Novo prompt gerado")
 print("Dados da questão recolhidos")
 

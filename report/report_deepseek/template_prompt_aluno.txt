@@ -50,7 +50,7 @@ Modelo HTML
   <h2>Análise Detalhada</h2>
   <ul>
     <li>Gap entre a Habilidade do aluno e a Dificuldade da questão: {DIFICULDADE_ITEM – HABILIDADE_ESTIMADA_ALUNO} (imprima o resultado da conta, não os dois números subtraindo)</li>
-    <li>Análise da probabilidade de acerto: (Mantenha a string "Análise da probabilidade de acerto:" e expanda explicações da relação entre a {PROBABILIDADE_ACERTO}, a {PROBABILIDADE_ACERTO_ACASO}, a {DIFICULDADE_ITEM} e a {HABILIDADE_ESTIMADA_ALUNO} e o que estas relações representam. Após essa análise, insira uma análise da {PROBABILIDADE_ACERTO} e a {PROBABILIDADE_ACERTO_ACASO}. Sempre mencione os números diretamente nestas análises.)</li>
+    <li>Análise da probabilidade de acerto: (expanda explicações da relação entre a {PROBABILIDADE_ACERTO}, a {PROBABILIDADE_ACERTO_ACASO}, a {DIFICULDADE_ITEM} e a {HABILIDADE_ESTIMADA_ALUNO} e o que estas relações representam. Após essa análise, insira uma análise da {PROBABILIDADE_ACERTO} e a {PROBABILIDADE_ACERTO_ACASO}. Sempre mencione os números diretamente nestas análises.)</li>
     <ul>
       <li>(Explique como a PROBABILIDADE_ACERTO foi influenciada pela diferença entre HABILIDADE_ESTIMADA_ALUNO e DIFICULDADE_ITEM.)</li>
       <li>(Compare a PROBABILIDADE_ACERTO com a PROBABILIDADE_ACERTO_ACASO e analise o que isso revela quando elas são iguais ou próximas e quando elas são bem diferentes)</li>
@@ -83,7 +83,7 @@ Modelo HTML
     <li>Estratégias: (EstrategiaGeralPersonalizada)</li>
   </ul>
   <h1>GRÁFICO CCI</h1>
-  <iframe src="%%cci_file%%" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../%%cci_file%%" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
 </body>
 </html>
 ===FIM_HTML===

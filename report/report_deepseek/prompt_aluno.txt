@@ -8,17 +8,17 @@ Você é um especialista em psicometria e análise educacional. Analise os dados
 
 DADOS DE ENTRADA
 {
-"MATRICULA": 210054649904,
-"ITEM": 108,
-"HABILIDADE_ESTIMADA_ALUNO ": 805.44,
-"PROBABILIDADE_ACERTO ": 37.06,
-"GABARITO": E,
-"DIFICULDADE_ITEM ": 823.4,
-"CLASSIFICACAO_DIFICULDADE_ITEM": Muito dificil,
-"PROBABILIDADE_ACERTO_ACASO ": 15.74,
-"ACERTOU_ITEM": True,
-"COMPETENCIA_EXIGIDA_ITEM": Apropriar-se de conhecimentos da física para, em situações problema, interpretar, avaliar ou planejar intervenções científicotecnológicas.,
-"HABILIDADE_EXIGIDA_ITEM ": Caracterizar causas ou efeitos dos movimentos de partículas, substâncias, objetos ou corpos celestes."
+"MATRICULA": 210055501428,
+"ITEM": 7,
+"HABILIDADE_ESTIMADA_ALUNO ": 747.11,
+"PROBABILIDADE_ACERTO ": 66.31,
+"GABARITO": D,
+"DIFICULDADE_ITEM ": 463.54,
+"CLASSIFICACAO_DIFICULDADE_ITEM": Muito facil,
+"PROBABILIDADE_ACERTO_ACASO ": 0.03,
+"ACERTOU_ITEM": False,
+"COMPETENCIA_EXIGIDA_ITEM": Analisar, interpretar e aplicar recursos expressivos das linguagens, relacionando textos com seus contextos, mediante a natureza, função, organização, estrutura das manifestações, de acordo com as condições de produção e recepção.,
+"HABILIDADE_EXIGIDA_ITEM ": Relacionar informações sobre concepções artísticas e procedimentos de construção do texto literário."
 }
 
 Modelo HTML
@@ -83,7 +83,7 @@ Modelo HTML
     <li>Estratégias: (EstrategiaGeralPersonalizada)</li>
   </ul>
   <h1>GRÁFICO CCI</h1>
-  <iframe src="../plots/cci_210054649904_PA_CN_18.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/cci_210055501428_PR_LC_7.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
 </body>
 </html>
 ===FIM_HTML===

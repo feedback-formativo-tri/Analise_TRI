@@ -4,7 +4,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 
-cci_file_prof = "cci_prof.html"
 histogram_file = "histogram.html"
 
 def cci_prof(df, area_conhecimento, item, titulo=""):
@@ -123,6 +122,8 @@ def get_prob_acerto(area_conhecimento, estado):
   
 
 def gera_cci_prof(item, area_conhecimento, estado):
+   cci_file_prof = f"plots/cci_prof_{item}_{area_conhecimento}_{estado}.html"
+   
    df_probabilidade = get_prob_acerto(area_conhecimento, estado)
 
    cci = cci_prof(df_probabilidade, area_conhecimento, item, f"CCI para o item {item} da prova de {area_conhecimento}")
@@ -135,7 +136,7 @@ def gera_cci_prof(item, area_conhecimento, estado):
 
 
 def gera_cci_aluno(matricula, questao, area_conhecimento, estado):
-  cci_file = f"../plots/cci_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
+  cci_file = f"plots/cci_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
 
   habil_examinando = get_habilidade_aluno(matricula, estado, area_conhecimento, questao)
   habil_examinando = habil_examinando["habilidade"].values[0]

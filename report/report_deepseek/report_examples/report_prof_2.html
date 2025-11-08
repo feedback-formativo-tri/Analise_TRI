@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de Análise de Item</title>
+  <style>
+  h1 { text-align: center; }
+  </style>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <h1><b>Relatório de Análise Item</b></h1>
+  <h2><b>Dados do Item</b></h2>
+  <ul>
+   <li>Item: 38</li>
+   <li>Área de Conhecimento: MT</li>
+   <li>Dificuldade Estimada do Item: 790.94 (200 - 1000). É considerada uma questão Muito difícil</li>
+   <li>Probabilidade de chute: 26.72%</li>
+   <li>Discriminação do Item: 3.28</li>
+   <li>Gabarito: B</li>
+  </ul>
+  <h2>Distribuição das respostas</h2>
+  <iframe src="../plots/dist_38_MT_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <h2>Acertos por Nível de Habilidade</h2>
+  <iframe src="../plots/acertos_38_MT_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <h2>Curva Característica do Item</h2>
+  <iframe src="../plots/cci_prof_38_MT_PR.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
+  <h2>Interpretações dos Resultados</h2>
+  <ul>
+    <li>Ao contrário do que se esperaria para uma questão de dificuldade elevada, a probabilidade de acerto ao acaso (26.72%) é ligeiramente superior à média prevista (20%). Isso pode indicar que há algum padrão nas respostas ou que as alternativas estão organizadas de forma que torna o chute mais vantajoso.</li>
+    <li>A discriminação do item (3.28) é considerada forte, o que sugere que a questão consegue distinguir adequadamente entre alunos com e sem habilidades relevantes.</li>
+    <li>Observou-se uma distribuição ligeiramente desbalanceada nas respostas: letra B foi a mais marcada (30.16%), seguida por E (29.32%). Ainda que a letra B corresponda ao gabarito, a proximidade das taxas de acerto entre as opções sugere que há alguma confusão entre os candidatos.</li>
+    <li>Os alunos com habilidade abaixo da dificuldade do item apresentaram mais acertos (21800.0) do que erros (3900.0), o que pode indicar que a questão, apesar de difícil, não está conseguindo separar adequadamente os alunos de baixo desempenho.</li>
+  </ul>
+  <h2>Recomendações</h2>
+  <p>Ao contrário do que se esperaria para uma questão de dificuldade elevada, a probabilidade de acerto ao acaso (26.72%) é ligeiramente superior à média prevista (20%). Isso pode indicar que há algum padrão nas respostas ou que as alternativas estão organizadas de forma que torna o chute mais vantajoso.</p>
+  <p>Considerando a forte discriminação (3.28) e a boa performance dos alunos com habilidade acima da dificuldade, recomenda-se manter o item no banco de questões. No entanto, é recomendável analisar se há algum viés nas respostas ou se as alternativas estão organizadas de forma que possa afetar negativamente a qualidade do item.</p>
+</body>
+</html>

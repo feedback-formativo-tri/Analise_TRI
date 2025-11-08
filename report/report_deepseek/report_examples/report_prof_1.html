@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de Análise Item</title>
+  <style>
+  h1 { text-align: center; }
+  </style>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <h1><b>Relatório de Análise Item</b></h1>
+  <h2><b>Dados do Item</b></h2>
+  <ul>
+   <li>Item: 21</li>
+   <li>Área de Conhecimento: LC</li>
+   <li> dificuldade Estimada do Item: 589.36 (200 - 1000). É considerada uma questão Médio.</li>
+   <li>Probabilidade de chute: 0%</li>
+   <li>Discriminação do Item: 0.31</li>
+   <li>Gabarito: E</li>
+  </ul>
+
+  <h2>Distribuição das respostas</h2>
+  <iframe src="../plots/dist_21_LC_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+
+  <h2>Acertos por Nível de Habilidade</h2>
+  <iframe src="../plots/acertos_21_LC_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+
+  <h2>Curva Característica do Item</h2>
+  <iframe src="../plots/cci_prof_21_LC_PR.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
+
+  <h2>Interpretações dos Resultados</h2>
+  <ul>
+    <li>A distribuição de respostas indica que a opção correta (E) foi a mais selecionada, com 50.82% das respostas, indicando que a maioria dos alunos identificou a resposta correta.</li>
+    <li>Os alunos com habilidade acima da dificuldade do item tiveram um desempenho significativamente superior, com 284.874,34 acertos e 221.704,53 erros.</li>
+    <li>Os alunos com habilidade abaixo da dificuldade do item também tiveram um desempenho semelhante, com 284.800,0 acertos e 221.700,0 erros.</li>
+    <li>A probabilidade de chute (0%) sugere que as respostas não foram afetadas significativamente pelo acaso.</li>
+    <li>Os padrões de resposta indicam que a questão foi capaz de discriminar razoavelmente entre os alunos, com uma razão de discriminação moderada (0.31).</li>
+    <li>A distribuição das marcações sugere que as respostas estavam concentradas na opção correta (E), com menor dispersão nas outras alternativas.</li>
+  </ul>
+
+  <h2>Recomendações</h2>
+  <p>Baixa recomenda manter o item, uma vez que a distribuição de respostas e a discriminação indicam que ele é adequado para a população. No entanto, pode ser interessante revisar a dificuldade do item para garantir que ele esteja alinhada com a classificação desejada.</p>
+</body>
+</html>

@@ -1,26 +1,26 @@
 Gere um Relatório de Qualidade da Questão usando os dados fornecidos.
 
 DADOS DA QUESTÃO
-Item: 29
-Area de Conhecimento: MT
-Dificuldade do Item: 596.49
-Classificação do Item: Media
-Probabilidade de acerto ao acaso: 26.43
-Discriminação do Item: 1.51
-Quantidade total de respostas: 8912
-Alunos com habilidade acima da dificuldade do item: 52.64
-Acertos de alunos com habilidade acima da dificuldade do item: 386512.95
-Erros de alunos com habilidade acima da dificuldade do item: 82834.4
-Alunos com habilidade abaixo da dificuldade do item: 47.36
-Acertos de alunos com habilidade abaixo da dificuldade do item: 386400.0
-Erros de alunos com habilidade abaixo da dificuldade do item: 82900.0
-Gabarito da questão: B
-Marcações na letra A: 10.08
-Marcações na letra B: 63.7
-Marcações na letra C: 12.84
-Marcações na letra D: 9.38
-Marcações na letra E: 3.74
-Respostas nulas: 0.27
+Item: 6
+Area de Conhecimento: CN
+Dificuldade do Item: 761.09
+Classificação do Item: Muito dificil
+Probabilidade de acerto ao acaso: 0.02
+Discriminação do Item: 0.46
+Quantidade total de respostas: 8910
+Alunos com habilidade acima da dificuldade do item: 4.89
+Acertos de alunos com habilidade acima da dificuldade do item: 21307.83
+Erros de alunos com habilidade acima da dificuldade do item: 22303.88
+Alunos com habilidade abaixo da dificuldade do item: 95.11
+Acertos de alunos com habilidade abaixo da dificuldade do item: 21400.0
+Erros de alunos com habilidade abaixo da dificuldade do item: 22400.0
+Gabarito da questão: E
+Marcações na letra A: 15.31
+Marcações na letra B: 13.23
+Marcações na letra C: 8.0
+Marcações na letra D: 30.45
+Marcações na letra E: 32.93
+Respostas nulas: 0.08
 
 
 Estrutura fixa do relatório:
@@ -50,11 +50,11 @@ MODELO DE RESPOSTA HTML
    <il>Gabarito: {Gabarito da questão}</il>
   </ul>
   <h2>Distribuição das respostas</h2>
-  <iframe src="../dist_respostas.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/dist_6_CN_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Acertos por Nível de Habilidade</h2>
-  <iframe src="../acertos_por_habilidade.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/acertos_6_CN_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Curva Característica do Item</h2>
-  <iframe src="../cci_prof.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/cci_prof_6_CN_PR.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Interpretações dos Resultados</h2>
   <ul>
     <il>(Resumo geral do comportamento do item, coerência com a dificuldade e discriminação.)</il>

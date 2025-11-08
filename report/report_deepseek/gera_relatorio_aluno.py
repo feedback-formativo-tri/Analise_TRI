@@ -4,9 +4,14 @@ import json
 from gera_cci import gera_cci_aluno
 from gera_prompt_aluno import gera_prompt
 
+matricula = "210055501428"
+questao = 7
+area_conhecimento = "LC"
+estado = "PR"
+
 prompt_file = "prompt_aluno.txt"
-report_output_file_html = "report_examples/report_aluno_v8.html"
-report_raw_output = "report_examples/report_raw_aluno_v8.txt"
+report_output_file_html = "report_examples/report_aluno_v0.html"
+report_raw_output = "report_examples/report_raw_aluno_v0.txt"
 
 def gera_relatorio_deepseek():
     with open(prompt_file, "r", encoding="utf-8") as file:
@@ -29,11 +34,6 @@ def gera_relatorio_deepseek():
     with open(report_output_file_html, "w", encoding="utf-8") as f:
         f.write(report_html)
 
-
-matricula = "210054649904"
-questao = 18
-area_conhecimento = "CN"
-estado = "PA"
 
 cci_file = gera_cci_aluno(matricula, questao, area_conhecimento, estado)
 print("Informações reunidas")

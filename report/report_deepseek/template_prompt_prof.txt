@@ -50,11 +50,11 @@ MODELO DE RESPOSTA HTML
    <il>Gabarito: {Gabarito da questão}</il>
   </ul>
   <h2>Distribuição das respostas</h2>
-  <iframe src="../dist_respostas.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../%%bar_file%%" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Acertos por Nível de Habilidade</h2>
-  <iframe src="../acertos_por_habilidade.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../%%pie_file%%" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Curva Característica do Item</h2>
-  <iframe src="../cci_prof.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../%%cci_file%%" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Interpretações dos Resultados</h2>
   <ul>
     <il>(Resumo geral do comportamento do item, coerência com a dificuldade e discriminação.)</il>
