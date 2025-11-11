@@ -65,10 +65,10 @@ Modelo HTML
     </ul>
     <li>Conclusão:</li>
     <ul>
-      <il>(Faça uma síntese crítica cruzando todas as variáveis (HABILIDADE_ESTIMADA_ALUNO, DIFICULDADE_ITEM, PROBABILIDADE_ACERTO, ACERTOU_ITEM).)</il>
-      <il>(Comente sobre o desempenho como "esperado", "atípico positivo" ou "atípico negativo" e fundamente por quê.)</il>
-      <il>(Relacione a análise com possíveis fatores externos (sorte, raciocínio lógico, conhecimento prévio).)</il>
-      <il>(Finalize com uma breve orientação sobre os próximos passos do aluno, com foco em desenvolvimento.)</il>
+      <li>(Faça uma síntese crítica cruzando todas as variáveis (HABILIDADE_ESTIMADA_ALUNO, DIFICULDADE_ITEM, PROBABILIDADE_ACERTO, ACERTOU_ITEM).)</li>
+      <li>(Comente sobre o desempenho como "esperado", "atípico positivo" ou "atípico negativo" e fundamente por quê.)</li>
+      <li>(Relacione a análise com possíveis fatores externos (sorte, raciocínio lógico, conhecimento prévio).)</li>
+      <li>(Finalize com uma breve orientação sobre os próximos passos do aluno, com foco em desenvolvimento.)</li>
     </ul>
   </ul>
   <h2>Competências e Habilidades</h2>

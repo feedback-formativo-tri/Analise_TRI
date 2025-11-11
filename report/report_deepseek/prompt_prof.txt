@@ -1,26 +1,26 @@
 Gere um Relatório de Qualidade da Questão usando os dados fornecidos.
 
 DADOS DA QUESTÃO
-Item: 6
-Area de Conhecimento: CN
-Dificuldade do Item: 761.09
-Classificação do Item: Muito dificil
-Probabilidade de acerto ao acaso: 0.02
-Discriminação do Item: 0.46
-Quantidade total de respostas: 8910
-Alunos com habilidade acima da dificuldade do item: 4.89
-Acertos de alunos com habilidade acima da dificuldade do item: 21307.83
-Erros de alunos com habilidade acima da dificuldade do item: 22303.88
-Alunos com habilidade abaixo da dificuldade do item: 95.11
-Acertos de alunos com habilidade abaixo da dificuldade do item: 21400.0
-Erros de alunos com habilidade abaixo da dificuldade do item: 22400.0
+Item: 21
+Area de Conhecimento: LC
+Dificuldade do Item: 589.36
+Classificação do Item: Media
+Probabilidade de acerto ao acaso: 0.0
+Discriminação do Item: 0.31
+Quantidade total de respostas: 8816
+Alunos com habilidade acima da dificuldade do item: 57.43
+Acertos de alunos com habilidade acima da dificuldade do item: 56.23
+Erros de alunos com habilidade acima da dificuldade do item: 43.77
+Alunos com habilidade abaixo da dificuldade do item: 42.57
+Acertos de alunos com habilidade abaixo da dificuldade do item: 43.51
+Erros de alunos com habilidade abaixo da dificuldade do item: 56.49
 Gabarito da questão: E
-Marcações na letra A: 15.31
-Marcações na letra B: 13.23
-Marcações na letra C: 8.0
-Marcações na letra D: 30.45
-Marcações na letra E: 32.93
-Respostas nulas: 0.08
+Marcações na letra A: 11.63
+Marcações na letra B: 15.34
+Marcações na letra C: 17.03
+Marcações na letra D: 5.01
+Marcações na letra E: 50.82
+Respostas nulas: 0.18
 
 
 Estrutura fixa do relatório:
@@ -43,23 +43,22 @@ MODELO DE RESPOSTA HTML
   <ul>
    <li>Item: {Item}</li>
    <li>Area de Conhecimento: {Area de Conhecimento}</li>
-   <li>Item: {Item}</li>
    <li>Dificuldade Estimada do Item: {Dificuldade do Item} (200 - 1.000). É considerada uma questão {Classificação do Item}</li>
    <li>Probabilidade de chute: {Probabilidade de acerto ao acaso}%</li>
-   <il>Discriminação do Item: {Discriminação do Item}</li>
-   <il>Gabarito: {Gabarito da questão}</il>
+   <li>Discriminação do Item: {Discriminação do Item}</li>
+   <li>Gabarito: {Gabarito da questão}</li>
   </ul>
   <h2>Distribuição das respostas</h2>
-  <iframe src="../plots/dist_6_CN_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/dist_21_LC_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Acertos por Nível de Habilidade</h2>
-  <iframe src="../plots/acertos_6_CN_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/acertos_21_LC_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Curva Característica do Item</h2>
-  <iframe src="../plots/cci_prof_6_CN_PR.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/cci_prof_21_LC_PR.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Interpretações dos Resultados</h2>
   <ul>
-    <il>(Resumo geral do comportamento do item, coerência com a dificuldade e discriminação.)</il>
-    <il>(Destaque de padrões esperados ou anômalos (ex.: acertos inesperados abaixo da dificuldade ou erros inesperados acima dela).)</il>
-    <il>(Interpretação da distribuição das marcações entre as alternativas (ex.: houve muitas marcações em uma alternativa errada?))</il>
+    <li>(Resumo geral do comportamento do item, coerência com a dificuldade e discriminação.)</li>
+    <li>(Destaque de padrões esperados ou anômalos (ex.: acertos inesperados abaixo da dificuldade ou erros inesperados acima dela).)</li>
+    <li>(Interpretação da distribuição das marcações entre as alternativas (ex.: houve muitas marcações em uma alternativa errada?))</il>
   </ul>
   <h2>Recomendações</h2>
   <p>(Sugestão de manter, revisar ou descartar o item, com justificativa breve.)</p>

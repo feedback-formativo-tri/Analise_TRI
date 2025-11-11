@@ -13,29 +13,27 @@
   <h1><b>Relatório de Análise Item</b></h1>
   <h2><b>Dados do Item</b></h2>
   <ul>
-   <li>Item: 6</li>
-   <li>Área de Conhecimento: CN</li>
-   <li>Dificuldade Estimada do Item: 761.09 (200 - 1.000). É considerada uma questão Muito difícil</li>
-   <li>Probabilidade de chute: 0.02%</li>
-   <li>Discriminação do Item: 0.46</li>
+   <li>Item: 21</li>
+   <li>Area de Conhecimento: LC</li>
+   <li>Dificuldade Estimada do Item: 589.36 (200 - 1.000). É considerada uma questão Médio</li>
+   <li>Probabilidade de chute: 0.0%</li>
+   <li>Discriminação do Item: 0.31</li>
    <li>Gabarito: E</li>
   </ul>
   <h2>Distribuição das respostas</h2>
-  <iframe src="../plots/dist_6_CN_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/dist_21_LC_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Acertos por Nível de Habilidade</h2>
-  <iframe src="../plots/acertos_6_CN_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/acertos_21_LC_PR.html" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Curva Característica do Item</h2>
-  <iframe src="../plots/cci_prof_6_CN_PR.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
+  <iframe src="../plots/cci_prof_21_LC_PR.html" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Interpretações dos Resultados</h2>
   <ul>
-    <li>A questão apresenta uma boa discriminação (0.46), indicando que consegue separar alunos com habilidades diferentes.</li>
-    <li>A dificuldade do item (761.09) o classifica como "Muito difícil", o que é consistente com a probabilidade de acerto ao acaso (2%) e com a maioria das respostas estando concentradas na alternativa correta (E).</li>
-    <li>A curva de características do item (CCI) mostra que alunos com habilidades acima da dificuldade tiveram um desempenho ligeiramente superior, enquanto os alunos com habilidades abaixo tiveram maior probabilidade de errar.</li>
-    <li>A distribuição das respostas sugere que a alternativa E foi a mais escolhida (32.93%), seguida pela D (30.45%). A presença significativa de respostas na alternativa D, embora incorreta, pode indicar uma certa confusão entre as opções.</li>
-    <li>A probabilidade de acerto ao acaso (2%) é baixa, o que reforça a ideia de que a questão foi bem projetada para distinguir os alunos mais habilidosos daqueles menos preparados.</li>
+    <li>A questão apresenta uma distribuição de respostas relativamente concentrada, com a maioria das respostas corretas (50.82%) na opção E, que é o gabarito. Isso sugere que a maioria dos alunos identificou a resposta correta.</li>
+    <li>Observa-se um padrão de erros em alunos com habilidade acima da dificuldade do item (43.77%), o que pode indicar que a questão foi mais difícil do que previsto para esse grupo ou que há confusões na interpretação das alternativas.</li>
+    <li>A distribuição das respostas mostra que a opção E recebeu 50.82% de acertos, enquanto as outras alternativas tiveram uma participação bem menor. Isso sugere que a resposta correta foi amplamente identificada, mas também pode indicar que a questão teve um grau de discriminação moderado (0.31), o que é considerado satisfatório.</li>
   </ul>
   <h2>Recomendações</h2>
-  <p>Ao avaliar este item, recomenda-se mantê-lo no banco de questões devido à sua boa discriminação e baixa probabilidade de acerto aleatório. No entanto, é importante revisar as alternativas incorretas, especialmente a D, que recebeu muitas respostas. Pode ser útil ajustar o texto das alternativas para reduzir a confusão entre as opções correta (E) e a mais frequentemente escolhida erroneamente (D). Além disso, é recomendável monitorar se alunos com habilidades abaixo da dificuldade do item continuam apresentando desempenho consistente.</p>
+  <p>Ao observar os resultados, recomenda-se revisar a questão para entender por que alunos com habilidade acima da dificuldade apresentaram mais erros. Isso pode indicar problemas na clareza das alternativas ou na própria construção do item. Caso não haja melhorias significativas após a revisão, pode ser considerado descartá-lo.</p>
 </body>
 </html>
 ===FIM_HTML===

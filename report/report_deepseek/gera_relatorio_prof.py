@@ -136,8 +136,8 @@ def gera_relatorio_deepseek():
         f.write(report_html)
 
 
-ITEM = 6
-AREA_CONHECIMENTO = "CN"
+ITEM = 21
+AREA_CONHECIMENTO = "LC"
 ESTADO = "PR"
 BAR_CHART_FILE = f"plots/dist_{ITEM}_{AREA_CONHECIMENTO}_{ESTADO}.html"
 PIE_PLOT_FILE = f"plots/acertos_{ITEM}_{AREA_CONHECIMENTO}_{ESTADO}.html"

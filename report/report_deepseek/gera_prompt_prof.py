@@ -58,22 +58,22 @@ def gera_prompt(area, estado, item, bar_file, pie_file, cci_file):
 
 
     alunos_acertaram = habilidades_df[habilidades_df[f'Q{item}'] == 1]
-    alunos_acertaram_percent = 100*(alunos_acertaram/qtde_respostas_total)
+    # alunos_acertaram_percent = 100*(alunos_acertaram/qtde_respostas_total)
     alunos_erraram = habilidades_df[habilidades_df[f'Q{item}'] == 0]
-    alunos_erraram_percent = 100*(alunos_erraram/qtde_respostas_total)
+    # alunos_erraram_percent = 100*(alunos_erraram/qtde_respostas_total)
 
     alunos_acertaram_abaixo_media = alunos_acertaram[alunos_acertaram["habilidade"] < habilidade_mais_proxima].count().values[0]
     alunos_acertaram_acima_media = alunos_acertaram[alunos_acertaram["habilidade"] >= habilidade_mais_proxima].count().values[0]
-    alunos_acertaram_abaixo_media_percent = 100*(alunos_acertaram_abaixo_media/alunos_acertaram_abaixo_media+alunos_acertaram_acima_media)
-    alunos_acertaram_acima_media_percent = 100*(alunos_acertaram_acima_media/alunos_acertaram_abaixo_media+alunos_acertaram_acima_media)
-
     alunos_erraram_abaixo_media = alunos_erraram[alunos_erraram["habilidade"] < habilidade_mais_proxima].count().values[0]
     alunos_erraram_acima_media = alunos_erraram[alunos_erraram["habilidade"] >= habilidade_mais_proxima].count().values[0]
-    alunos_erraram_abaixo_media_percent = 100*(alunos_erraram_abaixo_media/alunos_erraram_abaixo_media+alunos_erraram_acima_media)
-    alunos_erraram_acima_media_percent = 100*(alunos_erraram_acima_media/alunos_erraram_abaixo_media+alunos_erraram_acima_media)
+
+    alunos_acertaram_abaixo_media_percent = 100*(alunos_acertaram_abaixo_media/(alunos_acertaram_abaixo_media+alunos_erraram_abaixo_media))
+    alunos_acertaram_acima_media_percent = 100*(alunos_acertaram_acima_media/(alunos_erraram_acima_media+alunos_acertaram_acima_media))
+    alunos_erraram_abaixo_media_percent = 100*(alunos_erraram_abaixo_media/(alunos_erraram_abaixo_media+alunos_acertaram_abaixo_media))
+    alunos_erraram_acima_media_percent = 100*(alunos_erraram_acima_media/(alunos_erraram_acima_media+alunos_acertaram_acima_media))
 
     alunos_acima_media_percent = 100*(alunos_erraram_acima_media+alunos_acertaram_acima_media)/qtde_respostas_total
-    alunos_abaixo_media_percent = 100*(alunos_erraram_abaixo_media + alunos_acertaram_abaixo_media)/qtde_respostas_total
+    alunos_abaixo_media_percent = 100*(alunos_erraram_abaixo_media+alunos_acertaram_abaixo_media)/qtde_respostas_total
 
 
     # Pegando estatísticas de respostas em cada opção
@@ -128,3 +128,10 @@ def gera_prompt(area, estado, item, bar_file, pie_file, cci_file):
 
     print("Arquivo atualizado com sucesso!")
     return dados
+
+# def main():
+#     dados = gera_prompt("CH", "PR", 19, "", "", "")
+#     for key, value in dados.items():
+#         print(f"{key}: {value}")
+
+# main()

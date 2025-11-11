@@ -43,11 +43,10 @@ MODELO DE RESPOSTA HTML
   <ul>
    <li>Item: {Item}</li>
    <li>Area de Conhecimento: {Area de Conhecimento}</li>
-   <li>Item: {Item}</li>
    <li>Dificuldade Estimada do Item: {Dificuldade do Item} (200 - 1.000). É considerada uma questão {Classificação do Item}</li>
    <li>Probabilidade de chute: {Probabilidade de acerto ao acaso}%</li>
-   <il>Discriminação do Item: {Discriminação do Item}</li>
-   <il>Gabarito: {Gabarito da questão}</il>
+   <li>Discriminação do Item: {Discriminação do Item}</li>
+   <li>Gabarito: {Gabarito da questão}</li>
   </ul>
   <h2>Distribuição das respostas</h2>
   <iframe src="../%%bar_file%%" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
@@ -57,9 +56,9 @@ MODELO DE RESPOSTA HTML
   <iframe src="../%%cci_file%%" style="height:900px; width:1200px; display:block; margin: 0 auto; border:none;"></iframe>
   <h2>Interpretações dos Resultados</h2>
   <ul>
-    <il>(Resumo geral do comportamento do item, coerência com a dificuldade e discriminação.)</il>
-    <il>(Destaque de padrões esperados ou anômalos (ex.: acertos inesperados abaixo da dificuldade ou erros inesperados acima dela).)</il>
-    <il>(Interpretação da distribuição das marcações entre as alternativas (ex.: houve muitas marcações em uma alternativa errada?))</il>
+    <li>(Resumo geral do comportamento do item, coerência com a dificuldade e discriminação.)</li>
+    <li>(Destaque de padrões esperados ou anômalos (ex.: acertos inesperados abaixo da dificuldade ou erros inesperados acima dela).)</li>
+    <li>(Interpretação da distribuição das marcações entre as alternativas (ex.: houve muitas marcações em uma alternativa errada?))</il>
   </ul>
   <h2>Recomendações</h2>
   <p>(Sugestão de manter, revisar ou descartar o item, com justificativa breve.)</p>
