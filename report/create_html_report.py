@@ -227,71 +227,71 @@ def calculate_feedback(habilidade, dificuldade, acerto_acaso, acertou, prob_acer
     
   return feedback
 
-def create_pdf_report(gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, discriminacao_item, prob_acerto, acertou_questao, feedback):
-  doc = SimpleDocTemplate(f"report_pdf/report_{matricula}_{estado}_{area_conhecimento}_{questao}.pdf", pagesize=A4)
-  styles = getSampleStyleSheet()
+# def create_pdf_report(gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, discriminacao_item, prob_acerto, acertou_questao, feedback):
+#   doc = SimpleDocTemplate(f"report_pdf/report_{matricula}_{estado}_{area_conhecimento}_{questao}.pdf", pagesize=A4)
+#   styles = getSampleStyleSheet()
 
-  title = styles["Heading1"]
-  title.alignment = 1
+#   title = styles["Heading1"]
+#   title.alignment = 1
 
-  header = styles["Heading3"]
-  header.alignment = 0
+#   header = styles["Heading3"]
+#   header.alignment = 0
 
-  text = styles["Bullet"]
-  text.alignment = 4
+#   text = styles["Bullet"]
+#   text.alignment = 4
 
-  conteudo = []
+#   conteudo = []
 
-  conteudo.append(Paragraph("Relatório de Análise pós-prova do ENEM", title))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph("Relatório de Análise pós-prova do ENEM", title))
+#   conteudo.append(Spacer(1, 12))
   
-  conteudo.append(Paragraph(f"Matricula do examinando: {matricula}", header))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(f"Matricula do examinando: {matricula}", header))
+#   conteudo.append(Spacer(1, 12))
 
-  conteudo.append(Paragraph(f"O examinando teve habilidade estimada {round(habil_examinando, 2)}, de uma escala de 200 a 1.000", text))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(f"O examinando teve habilidade estimada {round(habil_examinando, 2)}, de uma escala de 200 a 1.000", text))
+#   conteudo.append(Spacer(1, 12))
 
-  conteudo.append(Paragraph(f"O examinando tinha uma probabilidade de acerto estimada em {round(prob_acerto*100, 2)}%", text))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(f"O examinando tinha uma probabilidade de acerto estimada em {round(prob_acerto*100, 2)}%", text))
+#   conteudo.append(Spacer(1, 12))
 
-  conteudo.append(Paragraph(f"Item avaliado: {item_prova}", header))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(f"Item avaliado: {item_prova}", header))
+#   conteudo.append(Spacer(1, 12))
   
-  conteudo.append(Paragraph(f"Gabarito do item: {gabarito}", text))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(f"Gabarito do item: {gabarito}", text))
+#   conteudo.append(Spacer(1, 12))
 
-  conteudo.append(Paragraph(f"Dificuldade estimada: {round(dificuldade_item, 4)} (200 - 1.000). É considerada uma questão {class_dificuldade}", text))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(f"Dificuldade estimada: {round(dificuldade_item, 4)} (200 - 1.000). É considerada uma questão {class_dificuldade}", text))
+#   conteudo.append(Spacer(1, 12))
 
-  conteudo.append(Paragraph(f"Probabilidade de chute: {round(acerto_acaso_item*100, 2)}%", text))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(f"Probabilidade de chute: {round(acerto_acaso_item*100, 2)}%", text))
+#   conteudo.append(Spacer(1, 12))
 
-  if acertou_questao:
-    conteudo.append(Paragraph("O examinando acertou a questão", text))
-    conteudo.append(Spacer(1, 12))
-  else:
-    conteudo.append(Paragraph("O examinando errou a questão", text))
-    conteudo.append(Spacer(1, 12))
+#   if acertou_questao:
+#     conteudo.append(Paragraph("O examinando acertou a questão", text))
+#     conteudo.append(Spacer(1, 12))
+#   else:
+#     conteudo.append(Paragraph("O examinando errou a questão", text))
+#     conteudo.append(Spacer(1, 12))
 
-  conteudo.append(Paragraph(f"Competência exigida: {item_comp_desc}", text))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(f"Competência exigida: {item_comp_desc}", text))
+#   conteudo.append(Spacer(1, 12))
 
-  conteudo.append(Paragraph(f"Habilidade exigida: {item_hab_desc}", text))
-  conteudo.append(Spacer(1, 20))
+#   conteudo.append(Paragraph(f"Habilidade exigida: {item_hab_desc}", text))
+#   conteudo.append(Spacer(1, 20))
 
-  conteudo.append(Paragraph("Feedback", header))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph("Feedback", header))
+#   conteudo.append(Spacer(1, 12))
 
-  conteudo.append(Paragraph(feedback, text))
-  conteudo.append(Spacer(1, 12))
+#   conteudo.append(Paragraph(feedback, text))
+#   conteudo.append(Spacer(1, 12))
 
-  img = Image(f"plots/plot_{matricula}_{estado}_{area_conhecimento}_{questao}.png", width=20*cm, height=14*cm)
-  img.hAlign = 'CENTER'
+#   img = Image(f"plots/plot_{matricula}_{estado}_{area_conhecimento}_{questao}.png", width=20*cm, height=14*cm)
+#   img.hAlign = 'CENTER'
 
-  conteudo.append(img)
+#   conteudo.append(img)
 
-  doc.build(conteudo)
-  return
+#   doc.build(conteudo)
+#   return
 
 def get_area_nome(area):
   if area == "CN":
@@ -351,7 +351,7 @@ area_conhecimento = "MT"
 estado = "PA"
 
 TEMPLATE_FILE = "report_aluno_template.txt"
-OUTPUT_FILE = f"report_pdf/report_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
+OUTPUT_FILE = f"report_html_no_llm/report_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
 
 
 gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, discriminacao_item, prob_acerto, acertou_questao = get_report_informations(matricula, questao, area_conhecimento, estado)
