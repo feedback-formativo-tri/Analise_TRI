@@ -7,3 +7,5 @@
 /.ipynb_checkpoints
 /.tmp.driveupload
 /anaconda_projects
+*/__pycache__
+/report/report_deepseek/__pycache__
