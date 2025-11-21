@@ -9,6 +9,7 @@ Você é um especialista em psicometria e análise educacional. Analise os dados
 DADOS DE ENTRADA
 {
 "MATRICULA": %%matricula%%,
+"AREA_CONHECIMENTO": %%area%%
 "ITEM": %%item%%,
 "HABILIDADE_ESTIMADA_ALUNO ": %%habilidade_estimada%%,
 "PROBABILIDADE_ACERTO ": %%probabilidade_acerto%%,
@@ -43,7 +44,8 @@ Modelo HTML
   </ul>
   <h2><b>Item avaliado: {ITEM}</b></h2>
   <ul>
-   <il>Gabarito: {GABARITO}</li>
+   <li>Área de Conhecimento: {AREA_CONHECIMENTO}</li>
+   <li>Gabarito: {GABARITO}</li>
    <li>Dificuldade Estimada do Item: {DIFICULDADE_ITEM} (200 - 1.000). É considerada uma questão {CLASSIFICACAO_DIFICULDADE_ITEM}</li>
    <li>Probabilidade de chute: {PROBABILIDADE_ACERTO_ACASO}%</li>
   </ul>
@@ -81,6 +83,7 @@ Modelo HTML
   <ul>
     <li>Tópicos Prioritários: (TopicosPrioritarios)</li>
     <li>Estratégias: (EstrategiaGeralPersonalizada)</li>
+    <li><a href="https://app.mecenem.mec.gov.br/">Visite o site de estudos do ENEM</a></li>
   </ul>
   <h1>GRÁFICO CCI</h1>
   <iframe src="../%%cci_file%%" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>

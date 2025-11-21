@@ -114,15 +114,29 @@ def get_habilidade_aluno(matricula, questao, estado, area_conhecimento):
   
   return round(habil_examinando, 4), round(habil_examinando_normalizada, 2), bool(acertou_questao)
 
+def get_area_nome(area):
+  if area == "CN":
+    area_conhecimento = "Ciências da Natureza e suas Tecnologias"
+  elif area == "CH":
+    area_conhecimento = "Ciências Humanas e suas Tecnologias"
+  elif area == "MT":
+    area_conhecimento = "Matemática e suas Tecnologias"
+  elif area == "LC":
+    area_conhecimento = "Linguagens, Códigos e suas Tecnologias"
+  
+  return area_conhecimento
+
 def gera_prompt(mat, item, estado, area, cci_file):
   habilidade_aluno, habilidade_aluno_normalizada, acertou_questao = get_habilidade_aluno(mat, item, estado, area)
   prob_acerto = get_prob_acerto(area, estado, habilidade_aluno, item)
   gabarito, habilidade_exigida, competencia_exigida, item_prova = get_question_information(area, item)
   acerto_acaso, dificuldade_item = get_dificuldade_item(estado, area, item)
   classificacao_dificuldade = get_class_dif(area, estado, item)
+  area_nome = get_area_nome(area)
 
   dados = {
     "matricula": mat,
+    "area": area_nome,
     "item": item_prova,
     "habilidade_estimada": habilidade_aluno_normalizada,
     "probabilidade_acerto": prob_acerto,
