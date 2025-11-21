@@ -5,6 +5,7 @@
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
+from gera_cci import gera_cci_aluno_no_llm as gera_cci
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
@@ -290,6 +291,57 @@ def create_pdf_report(gabarito, item_hab_desc, item_comp_desc, item_prova, habil
   conteudo.append(img)
 
   doc.build(conteudo)
+  return
+
+def get_area_nome(area):
+  if area == "CN":
+    area_conhecimento = "Ciências da Natureza e suas Tecnologias"
+  elif area == "CH":
+    area_conhecimento = "Ciências Humanas e suas Tecnologias"
+  elif area == "MT":
+    area_conhecimento = "Matemática e suas Tecnologias"
+  elif area == "LC":
+    area_conhecimento = "Linguagens, Códigos e suas Tecnologias"
+  
+  return area_conhecimento
+
+def create_html_report(gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback):
+  if acertou_questao:
+    acertou_questao = "acertou"
+  elif not acertou_questao:
+    acertou_questao == "errou"
+  
+  area_nome = get_area_nome(area_conhecimento)
+
+  cci_file = gera_cci(matricula, questao, area_conhecimento, estado)
+
+  dados = {
+    "matricula": matricula,
+    "area_conhecimento": area_nome,
+    "item": item_prova,
+    "habilidade_aluno": habil_examinando,
+    "probabilidade_acerto": prob_acerto,
+    "gabarito": gabarito,
+    "dificuldade_item": dificuldade_item,
+    "classificacao_item": class_dificuldade,
+    "chute": acerto_acaso_item,
+    "acertou_errou": acertou_questao,
+    "competencia_questao": item_comp_desc,
+    "habilidade_questao": item_hab_desc,
+    "feedback": feedback,
+    "cci_file": cci_file
+  }
+  with open(TEMPLATE_FILE, "r", encoding="utf-8") as f:
+    template = f.read()
+  
+  for key, value in dados.items():
+    template = template.replace(f"%%{key}%%", str(value))
+  
+  with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    f.write(template)
+
+  print(f"Report gerado e salvo em {OUTPUT_FILE}")
+  return
   
   
 
@@ -297,6 +349,9 @@ matricula = "210054695880"
 questao = 7
 area_conhecimento = "MT"
 estado = "PA"
+
+TEMPLATE_FILE = "report_aluno_template.txt"
+OUTPUT_FILE = f"report_pdf/report_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
 
 
 gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, discriminacao_item, prob_acerto, acertou_questao = get_report_informations(matricula, questao, area_conhecimento, estado)
@@ -318,4 +373,4 @@ class_dificuldade = get_class_dif(area_conhecimento, estado, questao)
 
 feedback = calculate_feedback(habil_examinando, dificuldade_item, acerto_acaso_item, acertou_questao, prob_acerto)
 
-create_pdf_report(gabarito, item_hab_desc_corrijido, item_comp_desc_corrijido, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, discriminacao_item, prob_acerto, acertou_questao, feedback)
+create_html_report(gabarito, item_hab_desc_corrijido, item_comp_desc_corrijido, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback)

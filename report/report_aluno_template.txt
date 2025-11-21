@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de Análise TRI pós-prova do ENEM</title>
+  <style>
+  h1 { text-align: center; }
+  </style>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <h1><b>Relatório de Análise TRI pós-prova do ENEM</b></h1>
+  <h2><b>Matrícula do examinando: %%matricula%%</b></h2>
+  <ul>
+    <li>O examinando teve habilidade estimada em %%habilidade_aluno%%, de uma escala de 200 a 1.000</li>
+    <li>O examinando tinha uma probabilidade de acerto estimada em %%probabilidade_acerto%%%</li>
+    <li>O aluno %%acertou_errou%% a questão</li>
+  </ul>
+  <h2><b>Item avaliado: %%item%%</b></h2>
+  <ul>
+   <li>Área de Conhecimento: %%area_conhecimento%%</li>
+   <li>Gabarito: %%gabarito%%</li>
+   <li>Dificuldade Estimada do Item: %%dificuldade_item%% (200 - 1.000). É considerada uma questão %%classificacao_item%%</li>
+   <li>Probabilidade de chute: %%chute%%%</li>
+   <li>Competência exigida: %%competencia_questao%%</li>
+   <li>Habilidade exigida: %%habilidade_questao%%</li>
+  </ul>
+  <h2>Feedback</h2>
+  <p>%%feedback%%</p>
+  <ul>
+    <li><a href="https://app.mecenem.mec.gov.br/">Visite o site de estudos do ENEM</a></li>
+  </ul>
+  <h1>GRÁFICO CCI</h1>
+  <iframe src="../%%cci_file%%" style="height:600px; width:900px; display:block; margin: 0 auto; border:none;"></iframe>
+</body>
+</html>
