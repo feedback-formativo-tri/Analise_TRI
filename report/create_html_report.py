@@ -2,6 +2,8 @@
 # Matricula - Errou a questao? - Alternativa correta - Habilidade latente
 # Questao - Eixo/area abordada.?
 
+import re
+import os
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
@@ -11,7 +13,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import cm
 
-def scatter_plot(df, item, aluno, habilidade, dificuldade, examinando="", titulo=""):
+def scatter_plot(df, area_conhecimento, item, aluno, habilidade, dificuldade, examinando="", titulo=""):
     coluna_y = item
     
     scatter = go.Figure()
@@ -179,22 +181,22 @@ def get_report_informations(matricula, questao, area_conhecimento, estado):
   prob_acerto = df_probabilidade[round(df_probabilidade["theta"], 4) == habil_examinando]
   prob_acerto = prob_acerto[f'Item  {questao}'].values[0]
 
-  dados_examinando = {
-    "theta": habil_examinando,
-    "probabilidade": prob_acerto,
-    "prob_chute": acerto_acaso_item,
-    "discriminacao": discriminacao_item,
-    "dificuldade": dificuldade_item
-  }
+  # dados_examinando = {
+  #   "theta": habil_examinando,
+  #   "probabilidade": prob_acerto,
+  #   "prob_chute": acerto_acaso_item,
+  #   "discriminacao": discriminacao_item,
+  #   "dificuldade": dificuldade_item
+  # }
 
 
-  cci = scatter_plot(df_probabilidade, questao, dados_examinando, habil_examinando_normalizada, dificuldade_normalizada, f"Examinando {matricula}", f"CCI para o item {questao} da prova de {area_conhecimento}")
+  # cci = scatter_plot(df_probabilidade, area_conhecimento, questao, dados_examinando, habil_examinando_normalizada, dificuldade_normalizada, f"Examinando {matricula}", f"CCI para o item {questao} da prova de {area_conhecimento}")
 
-  cci.write_image(f"plots/plot_{matricula}_{estado}_{area_conhecimento}_{questao}.png")
+  # cci.write_image(f"plots/plot_{matricula}_{estado}_{area_conhecimento}_{questao}.png")
   
   return gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando_normalizada, acerto_acaso_item, dificuldade_normalizada, discriminacao_item, prob_acerto, acertou_questao
 
-def calculate_feedback(habilidade, dificuldade, acerto_acaso, acertou, prob_acerto):
+def calculate_feedback(habilidade, item_hab_desc_corrijido, dificuldade, acerto_acaso, acertou, prob_acerto):
   if habilidade < dificuldade and acertou:
       feedback = (
           f"Você acertou uma questão acima do seu nível atual (habilidade = {habilidade}, dificuldade = {dificuldade}). "
@@ -223,7 +225,7 @@ def calculate_feedback(habilidade, dificuldade, acerto_acaso, acertou, prob_acer
 
   # Análise do chute
   if acertou and prob_acerto - acerto_acaso < 0.15:
-      feedback += f" A chance de ter acertado por sorte é significativa (probabilidade de chute = {(prob_acerto*100):.2f}%, chute = {(acerto_acaso*100):.2f}%). Considere revisar esse tópico para garantir o entendimento."
+      feedback += f" A chance de ter acertado por sorte é significativa (probabilidade de acerto do aluno = {(prob_acerto*100):.2f}%, probabilidade de acerto por chute da questão = {(acerto_acaso*100):.2f}%). Considere revisar esse tópico para garantir o entendimento."
     
   return feedback
 
@@ -305,11 +307,14 @@ def get_area_nome(area):
   
   return area_conhecimento
 
-def create_html_report(gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback):
-  if acertou_questao:
+def create_html_report(matricula, area_conhecimento, estado, questao, gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback):
+  TEMPLATE_FILE = "report_aluno_template_teste.txt"
+  OUTPUT_FILE = f"report_html_no_llm/report_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
+
+  if acertou_questao == 1:
     acertou_questao = "acertou"
-  elif not acertou_questao:
-    acertou_questao == "errou"
+  else:
+    acertou_questao = "errou"
   
   area_nome = get_area_nome(area_conhecimento)
 
@@ -320,11 +325,11 @@ def create_html_report(gabarito, item_hab_desc, item_comp_desc, item_prova, habi
     "area_conhecimento": area_nome,
     "item": item_prova,
     "habilidade_aluno": habil_examinando,
-    "probabilidade_acerto": prob_acerto,
+    "probabilidade_acerto": round(100*prob_acerto, 2),
     "gabarito": gabarito,
     "dificuldade_item": dificuldade_item,
     "classificacao_item": class_dificuldade,
-    "chute": acerto_acaso_item,
+    "chute": round(acerto_acaso_item*100, 2),
     "acertou_errou": acertou_questao,
     "competencia_questao": item_comp_desc,
     "habilidade_questao": item_hab_desc,
@@ -342,35 +347,72 @@ def create_html_report(gabarito, item_hab_desc, item_comp_desc, item_prova, habi
 
   print(f"Report gerado e salvo em {OUTPUT_FILE}")
   return
-  
-  
-
-matricula = "210054695880"
-questao = 7
-area_conhecimento = "MT"
-estado = "PA"
-
-TEMPLATE_FILE = "report_aluno_template.txt"
-OUTPUT_FILE = f"report_html_no_llm/report_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
 
 
-gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, discriminacao_item, prob_acerto, acertou_questao = get_report_informations(matricula, questao, area_conhecimento, estado)
 
-# Deixa apenas o texto da descrição da String
-item_comp_desc_partes = item_comp_desc.split()
-item_comp_desc_corrijido = ' '.join(item_comp_desc_partes[5:])
+def main():
+  padrao = re.compile(r"report_(\d+)_(\w{2})_(\w{2})_(\d+)\.pdf$")
+  PASTA = "report_html_no_llm"
 
-# Deixa apenas o texto da descrição da String
-item_hab_desc_partes = item_hab_desc.split()
-item_hab_desc_corrijido = ' '.join(item_hab_desc_partes[2:])
+  for name in os.listdir(PASTA):
+    match = padrao.match(name)
 
-habil_examinando = round(habil_examinando, 2)
-dificuldade_item = round(dificuldade_item, 2)
-acerto_acaso_item = round(acerto_acaso_item, 4)
-prob_acerto = round(prob_acerto, 4)
+    if match:
+      matricula, estado, area_conhecimento, questao = match.groups()
 
-class_dificuldade = get_class_dif(area_conhecimento, estado, questao)
+      questao = int(questao)
 
-feedback = calculate_feedback(habil_examinando, dificuldade_item, acerto_acaso_item, acertou_questao, prob_acerto)
+      gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, discriminacao_item, prob_acerto, acertou_questao = get_report_informations(matricula, questao, area_conhecimento, estado)
+      # Deixa apenas o texto da descrição da String
+      item_comp_desc_partes = item_comp_desc.split()
+      item_comp_desc_corrijido = ' '.join(item_comp_desc_partes[5:])
 
-create_html_report(gabarito, item_hab_desc_corrijido, item_comp_desc_corrijido, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback)
+      # Deixa apenas o texto da descrição da String
+      item_hab_desc_partes = item_hab_desc.split()
+      item_hab_desc_corrijido = ' '.join(item_hab_desc_partes[2:])
+
+      habil_examinando = round(habil_examinando, 2)
+      dificuldade_item = round(dificuldade_item, 2)
+      acerto_acaso_item = round(acerto_acaso_item, 4)
+      prob_acerto = round(prob_acerto, 4)
+
+      class_dificuldade = get_class_dif(area_conhecimento, estado, questao)
+
+      feedback = calculate_feedback(habil_examinando, item_hab_desc_corrijido, dificuldade_item, acerto_acaso_item, acertou_questao, prob_acerto)
+
+      create_html_report(matricula, area_conhecimento, estado, questao, gabarito, item_hab_desc_corrijido, item_comp_desc_corrijido, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback)
+      print(f"Report html criado para {matricula} na questão {questao}")
+
+  # iterar_pasta()
+  # matricula = "210054695880"
+  # questao = 7
+  # area_conhecimento = "MT"
+  # estado = "PA"
+
+  # TEMPLATE_FILE = "report_aluno_template.txt"
+  # OUTPUT_FILE = f"report_html_no_llm/report_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
+
+
+  # gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, discriminacao_item, prob_acerto, acertou_questao = get_report_informations(matricula, questao, area_conhecimento, estado)
+
+  # # Deixa apenas o texto da descrição da String
+  # item_comp_desc_partes = item_comp_desc.split()
+  # item_comp_desc_corrijido = ' '.join(item_comp_desc_partes[5:])
+
+  # # Deixa apenas o texto da descrição da String
+  # item_hab_desc_partes = item_hab_desc.split()
+  # item_hab_desc_corrijido = ' '.join(item_hab_desc_partes[2:])
+
+  # habil_examinando = round(habil_examinando, 2)
+  # dificuldade_item = round(dificuldade_item, 2)
+  # acerto_acaso_item = round(acerto_acaso_item, 4)
+  # prob_acerto = round(prob_acerto, 4)
+
+  # class_dificuldade = get_class_dif(area_conhecimento, estado, questao)
+
+  # feedback = calculate_feedback(habil_examinando, dificuldade_item, acerto_acaso_item, acertou_questao, prob_acerto)
+
+  # create_html_report(gabarito, item_hab_desc_corrijido, item_comp_desc_corrijido, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback)
+
+if __name__ == '__main__':
+  main()
