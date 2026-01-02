@@ -180,19 +180,6 @@ def get_report_informations(matricula, questao, area_conhecimento, estado):
 
   prob_acerto = df_probabilidade[round(df_probabilidade["theta"], 4) == habil_examinando]
   prob_acerto = prob_acerto[f'Item  {questao}'].values[0]
-
-  # dados_examinando = {
-  #   "theta": habil_examinando,
-  #   "probabilidade": prob_acerto,
-  #   "prob_chute": acerto_acaso_item,
-  #   "discriminacao": discriminacao_item,
-  #   "dificuldade": dificuldade_item
-  # }
-
-
-  # cci = scatter_plot(df_probabilidade, area_conhecimento, questao, dados_examinando, habil_examinando_normalizada, dificuldade_normalizada, f"Examinando {matricula}", f"CCI para o item {questao} da prova de {area_conhecimento}")
-
-  # cci.write_image(f"plots/plot_{matricula}_{estado}_{area_conhecimento}_{questao}.png")
   
   return gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando_normalizada, acerto_acaso_item, dificuldade_normalizada, discriminacao_item, prob_acerto, acertou_questao
 
@@ -349,8 +336,8 @@ def create_html_report(matricula, area_conhecimento, estado, questao, gabarito, 
   return
 
 
-
-def main():
+# Transforma reports pdf em html - não mais necessário
+def iterar_pasta():
   padrao = re.compile(r"report_(\d+)_(\w{2})_(\w{2})_(\d+)\.pdf$")
   PASTA = "report_html_no_llm"
 
@@ -383,36 +370,78 @@ def main():
       create_html_report(matricula, area_conhecimento, estado, questao, gabarito, item_hab_desc_corrijido, item_comp_desc_corrijido, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback)
       print(f"Report html criado para {matricula} na questão {questao}")
 
-  # iterar_pasta()
-  # matricula = "210054695880"
-  # questao = 7
-  # area_conhecimento = "MT"
-  # estado = "PA"
 
-  # TEMPLATE_FILE = "report_aluno_template.txt"
-  # OUTPUT_FILE = f"report_html_no_llm/report_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
+def report(matricula, estado, area_conhecimento, questao):
+  TEMPLATE_FILE = "report_aluno_template.txt"
+  OUTPUT_FILE = f"report_html_no_llm/report_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
 
 
-  # gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, discriminacao_item, prob_acerto, acertou_questao = get_report_informations(matricula, questao, area_conhecimento, estado)
+  gabarito, item_hab_desc, item_comp_desc, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, discriminacao_item, prob_acerto, acertou_questao = get_report_informations(matricula, questao, area_conhecimento, estado)
 
-  # # Deixa apenas o texto da descrição da String
-  # item_comp_desc_partes = item_comp_desc.split()
-  # item_comp_desc_corrijido = ' '.join(item_comp_desc_partes[5:])
+  # Deixa apenas o texto da descrição da String
+  item_comp_desc_partes = item_comp_desc.split()
+  item_comp_desc_corrijido = ' '.join(item_comp_desc_partes[5:])
 
-  # # Deixa apenas o texto da descrição da String
-  # item_hab_desc_partes = item_hab_desc.split()
-  # item_hab_desc_corrijido = ' '.join(item_hab_desc_partes[2:])
+  # Deixa apenas o texto da descrição da String
+  item_hab_desc_partes = item_hab_desc.split()
+  item_hab_desc_corrijido = ' '.join(item_hab_desc_partes[2:])
 
-  # habil_examinando = round(habil_examinando, 2)
-  # dificuldade_item = round(dificuldade_item, 2)
-  # acerto_acaso_item = round(acerto_acaso_item, 4)
-  # prob_acerto = round(prob_acerto, 4)
+  habil_examinando = round(habil_examinando, 2)
+  dificuldade_item = round(dificuldade_item, 2)
+  acerto_acaso_item = round(acerto_acaso_item, 4)
+  prob_acerto = round(prob_acerto, 4)
 
-  # class_dificuldade = get_class_dif(area_conhecimento, estado, questao)
+  class_dificuldade = get_class_dif(area_conhecimento, estado, questao)
 
-  # feedback = calculate_feedback(habil_examinando, dificuldade_item, acerto_acaso_item, acertou_questao, prob_acerto)
+  feedback = calculate_feedback(habil_examinando, item_hab_desc_corrijido, dificuldade_item, acerto_acaso_item, acertou_questao, prob_acerto)
 
-  # create_html_report(gabarito, item_hab_desc_corrijido, item_comp_desc_corrijido, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback)
+  create_html_report(matricula, area_conhecimento, estado, questao, gabarito, item_hab_desc_corrijido, item_comp_desc_corrijido, item_prova, habil_examinando, acerto_acaso_item, dificuldade_item, class_dificuldade, prob_acerto, acertou_questao, feedback)
+
+def main():
+  matricula = "210054695880"
+  questao = 7
+  area_conhecimento = "MT"
+  estado = "PA"
+
+  dados = [
+    {"mat": "210055059725", "item": 5, "area": "CH", "estado": "PA"},
+    {"mat": "210055059725", "item": 6, "area": "CH", "estado": "PA"},
+    {"mat": "210054537519", "item": 5, "area": "CH", "estado": "PA"},
+    {"mat": "210054537519", "item": 6, "area": "CH", "estado": "PA"},
+    {"mat": "210055516398", "item": 5, "area": "CH", "estado": "PR"},
+    {"mat": "210055516398", "item": 6, "area": "CH", "estado": "PR"},
+    {"mat": "210055486785", "item": 5, "area": "CH", "estado": "PR"},
+    {"mat": "210055486785", "item": 6, "area": "CH", "estado": "PR"},
+    {"mat": "210054915349", "item": 37, "area": "CN", "estado": "PA"},
+    {"mat": "210054915349", "item": 25, "area": "CN", "estado": "PA"},
+    {"mat": "210054559551", "item": 37, "area": "CN", "estado": "PA"},
+    {"mat": "210054559551", "item": 25, "area": "CN", "estado": "PA"},
+    {"mat": "210055416405", "item": 37, "area": "CN", "estado": "PR"},
+    {"mat": "210055416405", "item": 25, "area": "CN", "estado": "PR"},
+    {"mat": "210057569637", "item": 37, "area": "CN", "estado": "PR"},
+    {"mat": "210057569637", "item": 25, "area": "CN", "estado": "PR"},
+    {"mat": "210054579873", "item": 32, "area": "LC", "estado": "PA"},
+    {"mat": "210054579873", "item": 24, "area": "LC", "estado": "PA"},
+    {"mat": "210054688006", "item": 32, "area": "LC", "estado": "PA"},
+    {"mat": "210054688006", "item": 24, "area": "LC", "estado": "PA"},
+    {"mat": "210057347558", "item": 32, "area": "LC", "estado": "PR"},
+    {"mat": "210057347558", "item": 24, "area": "LC", "estado": "PR"},
+    {"mat": "210055278838", "item": 32, "area": "LC", "estado": "PR"},
+    {"mat": "210055278838", "item": 24, "area": "LC", "estado": "PR"},
+    {"mat": "210056753271", "item": 9, "area": "MT", "estado": "PA"},
+    {"mat": "210056753271", "item": 32, "area": "MT", "estado": "PA"},
+    {"mat": "210054559551", "item": 9, "area": "MT", "estado": "PA"},
+    {"mat": "210054559551", "item": 32, "area": "MT", "estado": "PA"},
+    {"mat": "210057287122", "item": 9, "area": "MT", "estado": "PR"},
+    {"mat": "210057287122", "item": 32, "area": "MT", "estado": "PR"},
+    {"mat": "210056864119", "item": 9, "area": "MT", "estado": "PR"},
+    {"mat": "210056864119", "item": 32, "area": "MT", "estado": "PR"},
+  ]
+
+  for inst in dados:
+    report(inst["mat"], inst["estado"], inst["area"], inst["item"])
+    print(f"Report gerado para {inst['mat']} do estado de {inst['estado']} na área {inst['area']}, item {inst['item']}")
+    print("-------------------------------------------------------------------\n")
 
 if __name__ == '__main__':
   main()
