@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
+from create_html_report import get_habilidade_aluno, get_prob_acerto, get_dificuldade_item
 
 def theta_to_enem(habilidade_tri):
    habilidade_enem = ((habilidade_tri + 4) / 8) * 800 + 200
@@ -235,24 +236,6 @@ def gera_scatter(df, area_conhecimento, item, prob_chute, dificuldade, titulo=""
     
     return scatter
 
-
-def get_habilidade_aluno(matricula, estado, area_conhecimento, questao):
-  df_habil_3PL = pd.read_csv(f"../codigos_R/LTM_3PL/habilidades/habil_3PL_ltm_{area_conhecimento}_{estado}.csv")
-  df_habil_3PL["alunos_id_string"] = df_habil_3PL["alunos_id_string"].astype(str)
-  habil_examinando = df_habil_3PL[df_habil_3PL["alunos_id_string"] == matricula]
-  
-  return habil_examinando
-
-def get_dificuldade_item(estado, area_conhecimento, item):
-  df_dificuldade = pd.read_csv(f"../codigos_R/LTM_3PL/dificuldades/dif_modelo_3PL_ltm_{area_conhecimento}_{estado}.csv")
-  df_dificuldade = df_dificuldade[df_dificuldade["questao"] == item]
-  
-  chute = df_dificuldade["acerto_acaso_item"].values[0]
-  dificuldade = df_dificuldade["dificuldade_item"].values[0]
-  discriminacao = df_dificuldade["discriminacao_item"].values[0]
-  
-  return chute, dificuldade, discriminacao
-
 def get_prob_acerto(area_conhecimento, estado):
   df_probabilidade = pd.read_csv(f"../codigos_R/LTM_3PL/probabilidades/df_prob_3PL_LTM_{area_conhecimento}_{estado}.csv")
   
@@ -278,44 +261,26 @@ def get_item_prova(area, questao):
 def gera_cci_aluno_no_llm(matricula, questao, area_conhecimento, estado):
   cci_file = f"plots/cci_{matricula}_{estado}_{area_conhecimento}_{questao}.html"
 
-  habil_examinando = get_habilidade_aluno(matricula, estado, area_conhecimento, questao)
-  habil_examinando = habil_examinando["habilidade"].values[0]
-  if habil_examinando > 4:
-    habil_examinando = 4.00
-  elif habil_examinando < -4:
-    habil_examinando = -4.00
+  habilidade_examinando, habilidade_normalizada, _ = get_habilidade_aluno(matricula, estado, area_conhecimento, questao)
   
-  habil_examinando_normalizada = ((habil_examinando + 4)/8) * 800 + 200
-  habil_examinando = round(habil_examinando, 4)
+  habilidade_examinando = round(habilidade_examinando, 4)
 
-  acerto_acaso_item, dificuldade_item, discriminacao_item = get_dificuldade_item(estado, area_conhecimento, questao)
-  
-  dificuldade_normalizada = dificuldade_item
-
-  if dificuldade_item > 4:
-    dificuldade_normalizada = 4.00
-  elif dificuldade_item < -4:
-    dificuldade_normalizada = -4.00
-  
-  dificuldade_normalizada = ((dificuldade_normalizada + 4)/8) * 800 + 200
+  acerto_acaso_item, dificuldade_normalizada, _, _ = get_dificuldade_item(estado, area_conhecimento, questao)
 
   df_probabilidade = get_prob_acerto(area_conhecimento, estado)
 
-  prob_acerto = df_probabilidade[round(df_probabilidade["theta"], 4) == habil_examinando]
+  prob_acerto = df_probabilidade[round(df_probabilidade["theta"], 4) == habilidade_examinando]
   prob_acerto = prob_acerto[f'Item  {questao}'].values[0]
 
   dados_examinando = {
-    "theta": habil_examinando,
+    "theta": habilidade_examinando,
     "probabilidade": prob_acerto,
     "prob_chute": acerto_acaso_item,
-    "discriminacao": discriminacao_item,
-    "dificuldade": dificuldade_item
   }
 
   item_prova = get_item_prova(area_conhecimento, questao)
 
-
-  cci = scatter_plot(df_probabilidade, area_conhecimento, questao, dados_examinando, habil_examinando_normalizada, dificuldade_normalizada, f"Código do examinando: {matricula}", f"CCI para o item {item_prova} da prova de {area_conhecimento}")
+  cci = scatter_plot(df_probabilidade, area_conhecimento, questao, dados_examinando, habilidade_normalizada, dificuldade_normalizada, f"Código do examinando: {matricula}", f"CCI para o item {item_prova} da prova de {area_conhecimento}")
 
   cci_html = cci.to_html(include_plotlyjs="cdn", full_html=False)
 
