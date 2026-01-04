@@ -3,7 +3,7 @@ import numpy as np
 
 def normalize_dif(estado, area_conhecimento):
     df = pd.read_csv(f"../codigos_R/LTM_3PL/dificuldades/dif_modelo_3PL_ltm_{area_conhecimento}_{estado}.csv")
-    df = df[["dificuldade_item", "questao"]]
+    df = df[["questao", "dificuldade_item", "acerto_acaso_item", "discriminacao_item"]]
     
     df["dificuldade_item_normalizado"] = ((df["dificuldade_item"] + 4) / 8) * 800 + 200
 
